@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <title>Project 1</title>
+    <title>Project 1 Treasure Hunt</title>
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-  </head>
-  <body>
-    <h1>Game</h1>
+</head>
+
+<body>
+    <h1>Treasure Hunt</h1>
     <h2></h2>
     <div class="left">
-      <h3>How to play</h3>
-      <img src="./assets/img/boy.png" id='boy'>
-      <img src="./assets/img/monster.png" id='monster'>
-      <img src="./assets/img/chest.png" id='chest'>
-      <img src="./assets/img/sword.png" id='sword'>
-      <img src="./assets/img/shield.png" id='shield'>
-      <img src="./assets/img/key.png" id='key'>
-      <p id='step1'>Step 1: <br> Click on <button id='tiles'>Place tiles</button> to start putting 2 tiles on the board<br>
-        When you are done click on <button id='movePlayer'>Step 2</button> to go to the next step.</p>
-      <p id='step2'>Step 2: <br> Click on <button id='moves'>No. of moves</button> to determine how many moves you can make</p>
-      <p id='turns'>Turns Left: 10</p>
-      <h4>Inventories:</h4>
-      <p id='swordGet'></p>
-      <p id='shieldGet'></p>
-      <p id='keyGet'></p>
-
-      <button id='restart'>Restart</start>
+        <h3>Objective:</h3>
+        <p>Get the treasure at the end of the board by building your own path.</p>
+        <h3>How to play</h3>
+        <img src="./assets/img/boy.png" id='boy'>
+        <img src="./assets/img/monster.png" id='monster'>
+        <img src="./assets/img/chest.png" id='chest'>
+        <img src="./assets/img/sword.png" id='sword'>
+        <img src="./assets/img/shield.png" id='shield'>
+        <img src="./assets/img/key.png" id='key'>
+        <ul>
+            <li>Each turn you have 2 tiles to build your path.</li>
+            <li>Click on <button id='tiles'>Place tiles</button> then click on the grid to place the tiles on the board.<br> Note: Each click on the button is 1 turn and you are only allowed to move along the path that you have built using the arrow keys.</li>
+            <li>Collect items along the way.<br> In order to defeat the monster, you need to have both sword and shield in your inventory. In order to get the treasure, you need to have key in your inventory and have defeated the monster.</li>
+            <li>You win the game if you are able to get the treasure before your turns runs out.</li>
+            <li>You lose the game if you move to the grid containing the monster without having both sword and shield in your inventory or when your turns runs out.</li>
+        </ul>
+        <h3 id='turns'>Turns: 10</h3>
+        <h3>Inventory:</h3>
+        <p id='swordGet'></p>
+        <p id='shieldGet'></p>
+        <p id='keyGet'></p>
+        <button id='restart'>Restart</start>
     </div>
     <div id="board">
-  </div>
-
-  <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.js"></script> -->
+    </div>
   <script src="./assets/js/project1.js"></script>
   </body>
 </html>

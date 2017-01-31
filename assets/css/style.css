@@ -2,30 +2,19 @@
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-          /*text-align: center;*/
-          /*border: 1px solid black;*/
 }
 
 body {
   background: #C0CAAD;
   font-family: 'Roboto', sans-serif;
   color: #2B2D42;
-  font-size: 20px;
+  font-size: 16px;
   text-align: center;
 }
 
-.left {
-  width: 500px;
-  float: left;
-  text-align: left;
-}
-
-button {
-  /*display: block;*/
-}
-
-#step2 {
-  display: none;
+img {
+  width: 50px;
+  height: 55px;
 }
 
 #board {
@@ -41,21 +30,13 @@ button {
   height: 60px;
   border: 1px solid #8D99AE;
   color: #EDF2F4;
-  /*line-height: 40px;*/
 }
 
-#boy {
-  /*position: relative;*/
-  z-index: 1;
+.left {
+  width: 500px;
+  float: left;
+  text-align: left;
 }
-
-img {
-  width: 50px;
-  height: 55px;
-  z-index: -1;
-}
-
-
 
 .colored {
   background: #654C4F;
