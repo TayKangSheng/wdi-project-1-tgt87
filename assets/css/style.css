@@ -45,6 +45,7 @@ img {
   width: 500px;
   float: left;
   text-align: left;
+  padding-left: 20px;
 }
 
 .colored {

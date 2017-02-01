@@ -70,11 +70,12 @@ document.addEventListener('DOMContentLoaded', function () {
       if (i !== 47) {
         boxes[i].addEventListener('click', function (e) {
           var tilesClicked = parseInt(e.target.dataset.num)
-          if (tilesPos.includes(tilesClicked) === false && tilesCount > 0) {
+          if (tilesPos.includes(tilesClicked) === false && tilesCount > 0 && isNaN(tilesClicked) === false) {
             e.target.setAttribute('class', 'colored')
             tilesPos.push(tilesClicked)
             tilesCount--
             console.log('tilePos inside putTiles', tilesPos)
+            console.log('tilesCount inside putTiles', tilesCount)
           }
         })
       }
