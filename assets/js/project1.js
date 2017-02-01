@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var boxes = document.querySelector('#board').querySelectorAll('div')
   var tilesBtn = document.querySelector('#tiles')
-  var turnCount = 10
+  var turnCount = 11
   var tilesPos = [2]
   var tilesCount = 2
   var gameOver = false
@@ -58,8 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
     tilesCount = 2
     document.querySelector('#turns').textContent = 'Turns: ' + turnCount
     if (turnCount === 0) {
+      tilesCount -= 2
       tilesBtn.disabled = true
-      h2.textContent = 'You have run out of turns. Game Over'
+      h2.textContent = 'You have run out of turns. Game Over!'
     }
     console.log('turnCount', turnCount)
   })
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
           getItems()
         } else {
           boyCurrentPos -= 1
-          alert('Please move within your path')
+          h2.textContent = 'Please move within your path.'
         }
         break
       case 38:  // up
@@ -107,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
           getItems()
         } else {
           boyCurrentPos -= 5
-          alert('Please move within your path')
+          h2.textContent = 'Please move within your path.'
         }
         break
       case 39:  // right
@@ -118,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
           getItems()
         } else {
           boyCurrentPos += 1
-          alert('Please move within your path')
+          h2.textContent = 'Please move within your path.'
         }
         break
       case 40:  // down
@@ -129,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
           getItems()
         } else {
           boyCurrentPos += 5
-          alert('Please move within your path')
+          h2.textContent = 'Please move within your path.'
         }
         break
     }
@@ -141,13 +142,13 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelector('[data-num=' + '"' + boyCurrentPos + '"' + ']').removeChild(document.querySelector('[data-num=' + '"' + boyCurrentPos + '"' + ']').firstElementChild)
       if (boyCurrentPos === swordPos) {
         swordCount = 1
-        document.querySelector('#swordGet').textContent = 'Sword Obtained: 1'
+        document.querySelector('#swordGet').textContent = 'Sword: 1'
       } else if (boyCurrentPos === shieldPos) {
         shieldCount = 1
-        document.querySelector('#shieldGet').textContent = 'Shield Obtained: 1'
+        document.querySelector('#shieldGet').textContent = 'Shield: 1'
       } else if (boyCurrentPos === keyPos) {
         keyCount = 1
-        document.querySelector('#keyGet').textContent = 'Key Obtained: 1'
+        document.querySelector('#keyGet').textContent = 'Key: 1'
       }
     }
     isGameOver()

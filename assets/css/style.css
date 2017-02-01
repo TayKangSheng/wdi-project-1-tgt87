@@ -4,11 +4,20 @@
           box-sizing: border-box;
 }
 
+h1 {
+  font-family: 'Bahiana', cursive;
+  font-size: 50px;
+}
+
+h2 {
+  color: red;
+}
+
 body {
   background: #C0CAAD;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #2B2D42;
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
 }
 
