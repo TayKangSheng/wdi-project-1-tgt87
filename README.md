@@ -1,5 +1,5 @@
 # Treasure Hunt
-A strategy game where the player builds his/her own path and collects items (sword, shield & key) along the way in order to defeat a monster and obtain the treasure.
+A strategy game where the player builds his own path and collects items (sword, shield & key) along the way in order to defeat a monster and obtain the treasure.
 
 ## Getting Started
 It is best to use Chrome and you can play the game [here](https://wdi-sg.github.io/wdi-project-1-tgt87/).
