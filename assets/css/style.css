@@ -10,7 +10,7 @@ h1 {
 }
 
 h2 {
-  color: red;
+  color: #F00;
 }
 
 body {
@@ -26,6 +26,17 @@ img {
   height: 55px;
 }
 
+.left {
+  width: 600px;
+  float: left;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.colored {
+  background: #6C464E;
+}
+
 #board {
   min-width: 300px;
   width: 40%;
@@ -38,16 +49,4 @@ img {
   width: 20%;
   height: 60px;
   border: 1px solid #8D99AE;
-  color: #EDF2F4;
-}
-
-.left {
-  width: 500px;
-  float: left;
-  text-align: left;
-  padding-left: 20px;
-}
-
-.colored {
-  background: #6C464E;
 }
