@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
-// Draw 50 div
+// Draw 50 div to be use as grids for game board
   var board = document.getElementById('board')
   for (var i = 49; i >= 0; i--) {
     var div = document.createElement('div')
     div.setAttribute('data-num', i)
-    // div.textContent = i
+    div.textContent = i
     board.appendChild(div)
   }
 
+  // Fixed player, treasure chest and monster starting position on the board
   var boy = document.getElementById('boy')
   var box2 = document.querySelector("[data-num='2']")
   box2.setAttribute('class', 'colored')
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var box42 = document.querySelector("[data-num='42']")
   box42.appendChild(monster)
 
+// Randomise sword, shield and key positions and make sure they don't appear on the same grid by having an array to track the unoccupied grids
   var availBoxes = [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 43, 44, 45, 46, 48, 49]
 
   var sword = document.getElementById('sword')
@@ -49,12 +51,40 @@ document.addEventListener('DOMContentLoaded', function () {
   var tilesBtn = document.querySelector('#tiles')
   var turnCount = 11
   var tilesPos = [2]
-  var tilesCount = 2
+  var tilesCount = 0
   var gameOver = false
 
+  for (var i = 0; i < boxes.length; i++) {
+    if (i !== 47) {
+      boxes[i].addEventListener('click', function (e) {
+        var boxIndex = parseInt(e.target.dataset.num)
+        console.log(boxIndex)
+        if (isNaN(boxIndex)) {
+          boxIndex = parseInt(e.target.parentElement.dataset.num)
+          if (!tilesPos.includes(boxIndex) && tilesCount > 0) {
+            tilesPos.push(boxIndex)
+            e.target.parentElement.setAttribute('class', 'colored')
+            tilesCount--
+          }
+          console.log('if NaN',boxIndex)
+        } else {
+          if (!tilesPos.includes(boxIndex) && tilesCount > 0) {
+            tilesPos.push(boxIndex)
+            e.target.setAttribute('class', 'colored')
+            tilesCount--
+        }
+           }
+          // tilesCount--
+          console.log('tilesPos after push', tilesPos)
+          console.log(tilesPos)
+      })
+    }
+  }
+
+// Each time the Put Tiles button is clicked, putTiles function will be called to check if it's valid position to place the tile.
+// No. of turns will reduce by 1 and when it reaches 0 the button will be disabled to disallow putting of tiles.
   tilesBtn.addEventListener('click', function () {
     turnCount--
-    putTiles()
     tilesCount = 2
     document.querySelector('#turns').textContent = 'Turns: ' + turnCount
     if (turnCount === 0) {
@@ -65,29 +95,15 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('turnCount', turnCount)
   })
 
-  function putTiles () {
-    for (var i = 0; i < boxes.length; i++) {
-      if (i !== 47) {
-        boxes[i].addEventListener('click', function (e) {
-          var tilesClicked = parseInt(e.target.dataset.num)
-          if (tilesPos.includes(tilesClicked) === false && tilesCount > 0 && isNaN(tilesClicked) === false) {
-            e.target.setAttribute('class', 'colored')
-            tilesPos.push(tilesClicked)
-            tilesCount--
-            console.log('tilePos inside putTiles', tilesPos)
-            console.log('tilesCount inside putTiles', tilesCount)
-          }
-        })
-      }
-    }
-  }
-
   var swordCount = 0
   var shieldCount = 0
   var keyCount = 0
 
   document.addEventListener('keydown', function (e) {
     console.log('tilesPos inside movePlayer', tilesPos)
+    if ([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+      e.preventDefault()
+    }
     if (gameOver === true) return false
     switch (e.keyCode) {
       case 37:  // left
