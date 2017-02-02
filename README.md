@@ -8,7 +8,7 @@ It is best to use Chrome and you can play the game [here](https://wdi-sg.github.
 * Clicking on the 'Place tiles' button will enable you to place 2 tiles on the board.
 * You'll need to click the button each time you wish to place tiles on the board.
 * Each click on the button (except the first click) will cost you 1 turn.
-* To place the tiles on the board, click on the grid (not the image) that you wish to place your tiles on.
+* To place the tiles on the board, click on the grid that you wish to place your tiles on.
 * Move your character using the arrow keys. You are only allowed to move along the path that you have built.
 * Collect items (sword, shield & key) along the way.
 * To defeat the monster, you need to have both sword and shield in your inventory.
