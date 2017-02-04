@@ -21,25 +21,30 @@ document.addEventListener('DOMContentLoaded', function () {
   var box42 = document.querySelector("[data-num='42']")
   box42.appendChild(monster)
 
-  var availBoxes = [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 43, 44, 45, 46, 48, 49]
+  var filledBoxes = [2, 42, 47]
+  function randomGenerate () {
+    var randInt = Math.floor(Math.random() * 50)
+    while (filledBoxes.includes(randInt)) {
+      randInt = Math.floor(Math.random() * 50)
+    }
+    filledBoxes.push(randInt)
+    return randInt
+  }
 
   var sword = document.getElementById('sword')
-  var randSword = Math.floor(Math.random() * 47)
-  document.querySelector('[data-num=' + '"' + availBoxes[randSword] + '"' + ']').appendChild(sword)
+  var randSword = randomGenerate()
+  document.querySelector('[data-num=' + '"' + randSword + '"' + ']').appendChild(sword)
   var swordPos = parseInt(document.getElementById('sword').parentElement.dataset.num)
-  availBoxes.splice(randSword, 1)
 
   var shield = document.getElementById('shield')
-  var randShield = Math.floor(Math.random() * 46)
-  document.querySelector('[data-num=' + '"' + availBoxes[randShield] + '"' + ']').appendChild(shield)
+  var randShield = randomGenerate()
+  document.querySelector('[data-num=' + '"' + randShield + '"' + ']').appendChild(shield)
   var shieldPos = parseInt(document.getElementById('shield').parentElement.dataset.num)
-  availBoxes.splice(randShield, 1)
 
   var key = document.getElementById('key')
-  var randKey = Math.floor(Math.random() * 45)
-  document.querySelector('[data-num=' + '"' + availBoxes[randKey] + '"' + ']').appendChild(key)
+  var randKey = randomGenerate()
+  document.querySelector('[data-num=' + '"' + randKey + '"' + ']').appendChild(key)
   var keyPos = parseInt(document.getElementById('key').parentElement.dataset.num)
-  availBoxes.splice(randKey, 1)
 
   var boxes = document.querySelector('#board').querySelectorAll('div')
   var tilesBtn = document.querySelector('#tiles')
@@ -83,51 +88,37 @@ document.addEventListener('DOMContentLoaded', function () {
   var shieldCount = 0
   var keyCount = 0
 
+  function moveOnPath (increment) {
+    if (tilesPos.indexOf(boyCurrentPos + increment) !== -1) {
+      boyCurrentPos += increment
+      document.querySelector('[data-num=' + '"' + boyCurrentPos + '"' + ']').appendChild(boy)
+      getItems()
+    } else {
+      h2.textContent = 'Please move within your path.'
+    }
+  }
+
   document.addEventListener('keydown', function (e) {
-    if ([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+    if ([37, 38, 39, 40].indexOf(e.keyCode) !== -1) {
       e.preventDefault()
     }
     if (gameOver === true) return false
     switch (e.keyCode) {
       case 37:  // left
-        boyCurrentPos += 1
-        if (tilesPos.indexOf(boyCurrentPos) !== -1) {
-          document.querySelector('[data-num=' + '"' + boyCurrentPos + '"' + ']').appendChild(boy)
-          getItems()
-        } else {
-          boyCurrentPos -= 1
-          h2.textContent = 'Please move within your path.'
+        if (boyCurrentPos % 5 !== 4) {
+          moveOnPath(1)
         }
         break
       case 38:  // up
-        boyCurrentPos += 5
-        if (tilesPos.indexOf(boyCurrentPos) !== -1) {
-          document.querySelector('[data-num=' + '"' + boyCurrentPos + '"' + ']').appendChild(boy)
-          getItems()
-        } else {
-          boyCurrentPos -= 5
-          h2.textContent = 'Please move within your path.'
-        }
+        moveOnPath(5)
         break
       case 39:  // right
-        boyCurrentPos -= 1
-        if (tilesPos.indexOf(boyCurrentPos) !== -1) {
-          document.querySelector('[data-num=' + '"' + boyCurrentPos + '"' + ']').appendChild(boy)
-          getItems()
-        } else {
-          boyCurrentPos += 1
-          h2.textContent = 'Please move within your path.'
+        if (boyCurrentPos % 5 !== 0) {
+          moveOnPath(-1)
         }
         break
       case 40:  // down
-        boyCurrentPos -= 5
-        if (tilesPos.indexOf(boyCurrentPos) !== -1) {
-          document.querySelector('[data-num=' + '"' + boyCurrentPos + '"' + ']').appendChild(boy)
-          getItems()
-        } else {
-          boyCurrentPos += 5
-          h2.textContent = 'Please move within your path.'
-        }
+        moveOnPath(-5)
         break
     }
   })
